@@ -17,13 +17,10 @@ public class CursoServlet extends HttpServlet {
     @Inject
     private CursoService service;
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         List<Curso> cursos = service.listar();  /*Obtiene una lista con los Cursos*/
-
-        cursos = service.listar();
 
         /*Pasando parámetros*/
         req.setAttribute("cursos", cursos);

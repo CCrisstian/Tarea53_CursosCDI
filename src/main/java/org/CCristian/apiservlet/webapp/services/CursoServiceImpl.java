@@ -2,8 +2,6 @@ package org.CCristian.apiservlet.webapp.services;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import org.CCristian.apiservlet.webapp.interceptors.Logging;
 import org.CCristian.apiservlet.webapp.interceptors.TransactionalJdbc;
 import org.CCristian.apiservlet.webapp.models.Curso;
 import org.CCristian.apiservlet.webapp.repositories.Repositorio;
@@ -13,9 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 @ApplicationScoped
-@Named
-@Logging
-@TransactionalJdbc
 public class CursoServiceImpl implements CursoService {
 
     @Inject
@@ -40,6 +35,7 @@ public class CursoServiceImpl implements CursoService {
     }
 
     @Override
+    @TransactionalJdbc
     public void guardar(Curso curso) {
         try {
             repositoryJBDC.guardar(curso);
@@ -58,6 +54,7 @@ public class CursoServiceImpl implements CursoService {
     }
 
     @Override
+    @TransactionalJdbc
     public void eliminar(int id) {
         try {
             repositoryJBDC.eliminar(id);

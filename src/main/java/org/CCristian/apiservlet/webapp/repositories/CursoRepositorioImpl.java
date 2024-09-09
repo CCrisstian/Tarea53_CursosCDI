@@ -1,38 +1,18 @@
 package org.CCristian.apiservlet.webapp.repositories;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import org.CCristian.apiservlet.webapp.config.MySQLConn;
 import org.CCristian.apiservlet.webapp.models.Curso;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
-@RequestScoped
-@Named
+@ApplicationScoped
 public class CursoRepositorioImpl implements Repositorio<Curso> {
 
     @Inject
-    @MySQLConn
     private Connection conn;
-
-    @Inject
-    private Logger log;
-
-    @PostConstruct
-    public void inicializar(){
-        log.info("Inicializando el beans " + this.getClass().getName());
-    }
-
-    @PreDestroy
-    public void destruir(){
-        log.info("Destruyendo el beans " + this.getClass().getName());
-    }
 
     @Override
     public List<Curso> listar() throws SQLException {

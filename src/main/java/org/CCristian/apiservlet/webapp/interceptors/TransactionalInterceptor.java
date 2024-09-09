@@ -4,9 +4,7 @@ import jakarta.inject.Inject;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
-import org.CCristian.apiservlet.webapp.config.MySQLConn;
 import org.CCristian.apiservlet.webapp.services.ServiceJdbcException;
-
 
 import java.sql.Connection;
 import java.util.logging.Logger;
@@ -16,7 +14,6 @@ import java.util.logging.Logger;
 public class TransactionalInterceptor {
 
     @Inject
-    @MySQLConn
     private Connection conn;
 
     @Inject
@@ -28,14 +25,14 @@ public class TransactionalInterceptor {
             conn.setAutoCommit(false);
         }
         try {
-            log.info(" ------> Iniciando Transacción " + invocation.getMethod().getName()
-                    + " de la clase " + invocation.getMethod().getDeclaringClass());
+            log.info(" ------> iniciando transaccion " + invocation.getMethod().getName() +
+                    " de la clase " + invocation.getMethod().getDeclaringClass());
             Object resultado = invocation.proceed();
             conn.commit();
-            log.info(" ------> Realizando 'commit' y Finalizando Transacción " + invocation.getMethod().getName()
-                    + " de la clase " + invocation.getMethod().getDeclaringClass());
+            log.info(" ------> realizando commit y finalizando transaccion " + invocation.getMethod().getName() +
+                    " de la clase " + invocation.getMethod().getDeclaringClass());
             return resultado;
-        } catch (ServiceJdbcException e) {
+        } catch (ServiceJdbcException e){
             conn.rollback();
             throw e;
         }

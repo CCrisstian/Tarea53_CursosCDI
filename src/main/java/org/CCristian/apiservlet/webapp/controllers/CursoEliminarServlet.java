@@ -18,7 +18,6 @@ public class CursoEliminarServlet extends HttpServlet {
     @Inject
     private CursoService service;
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
