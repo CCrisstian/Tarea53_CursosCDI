@@ -1,8 +1,10 @@
 package org.CCristian.apiservlet.webapp.services;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import org.CCristian.apiservlet.webapp.config.CursoServicePrincipal;
-import org.CCristian.apiservlet.webapp.config.Service;
+import jakarta.inject.Named;
+import org.CCristian.apiservlet.webapp.interceptors.Logging;
+import org.CCristian.apiservlet.webapp.interceptors.TransactionalJdbc;
 import org.CCristian.apiservlet.webapp.models.Curso;
 import org.CCristian.apiservlet.webapp.repositories.Repositorio;
 
@@ -10,8 +12,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@CursoServicePrincipal
+@ApplicationScoped
+@Named
+@Logging
+@TransactionalJdbc
 public class CursoServiceImpl implements CursoService {
 
     @Inject

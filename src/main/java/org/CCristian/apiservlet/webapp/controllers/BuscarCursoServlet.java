@@ -6,7 +6,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.CCristian.apiservlet.webapp.config.CursoServicePrincipal;
 import org.CCristian.apiservlet.webapp.models.Curso;
 import org.CCristian.apiservlet.webapp.services.CursoService;
 
@@ -18,7 +17,6 @@ import java.util.List;
 public class BuscarCursoServlet extends HttpServlet {
 
     @Inject
-    @CursoServicePrincipal
     private CursoService service;
 
     @Override

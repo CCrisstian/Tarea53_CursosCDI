@@ -2,9 +2,10 @@ package org.CCristian.apiservlet.webapp.repositories;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import org.CCristian.apiservlet.webapp.config.MySQLConn;
-import org.CCristian.apiservlet.webapp.config.Repository;
 import org.CCristian.apiservlet.webapp.models.Curso;
 
 import java.sql.*;
@@ -12,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Repository
+@RequestScoped
+@Named
 public class CursoRepositorioImpl implements Repositorio<Curso> {
 
     @Inject

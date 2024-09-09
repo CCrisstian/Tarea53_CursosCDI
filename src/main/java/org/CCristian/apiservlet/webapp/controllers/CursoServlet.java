@@ -1,13 +1,11 @@
 package org.CCristian.apiservlet.webapp.controllers;
 
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.CCristian.apiservlet.webapp.config.CursoServicePrincipal;
 import org.CCristian.apiservlet.webapp.models.Curso;
 import org.CCristian.apiservlet.webapp.services.CursoService;
 import java.io.IOException;
@@ -17,7 +15,6 @@ import java.util.List;
 public class CursoServlet extends HttpServlet {
 
     @Inject
-    @CursoServicePrincipal
     private CursoService service;
 
 
