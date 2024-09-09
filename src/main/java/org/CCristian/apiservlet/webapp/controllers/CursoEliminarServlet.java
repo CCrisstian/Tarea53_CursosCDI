@@ -1,24 +1,28 @@
 package org.CCristian.apiservlet.webapp.controllers;
 
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.CCristian.apiservlet.webapp.config.CursoServicePrincipal;
 import org.CCristian.apiservlet.webapp.models.Curso;
 import org.CCristian.apiservlet.webapp.services.CursoService;
-import org.CCristian.apiservlet.webapp.services.CursoServiceImpl;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.Optional;
 
 @WebServlet("/cursos/eliminar")
 public class CursoEliminarServlet extends HttpServlet {
+
+    @Inject
+    @CursoServicePrincipal
+    private CursoService service;
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Connection conn = (Connection) req.getAttribute("conn");    /*Obtiene la conexión a la Base de Datos*/
-        CursoService service = new CursoServiceImpl(conn);
 
         int id;
         try {

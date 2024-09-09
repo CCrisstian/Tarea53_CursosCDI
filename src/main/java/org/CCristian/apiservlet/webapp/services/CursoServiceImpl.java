@@ -1,21 +1,21 @@
 package org.CCristian.apiservlet.webapp.services;
 
+import jakarta.inject.Inject;
+import org.CCristian.apiservlet.webapp.config.CursoServicePrincipal;
+import org.CCristian.apiservlet.webapp.config.Service;
 import org.CCristian.apiservlet.webapp.models.Curso;
-import org.CCristian.apiservlet.webapp.repositories.CursoRepositorioImpl;
 import org.CCristian.apiservlet.webapp.repositories.Repositorio;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@CursoServicePrincipal
 public class CursoServiceImpl implements CursoService {
 
+    @Inject
     private Repositorio<Curso> repositoryJBDC;
-
-    public CursoServiceImpl(Connection connection) {
-        this.repositoryJBDC = new CursoRepositorioImpl(connection);
-    }
 
     @Override
     public List<Curso> listar() throws SecurityException {
@@ -44,12 +44,11 @@ public class CursoServiceImpl implements CursoService {
         }
     }
 
-
     @Override
     public Optional<Curso> porId(int id) {
         try {
             return Optional.ofNullable(repositoryJBDC.porId(id));
-        } catch (SQLException throwables){
+        } catch (SQLException throwables) {
             throw new ServiceJdbcException(throwables.getMessage(), throwables.getCause());
         }
     }
